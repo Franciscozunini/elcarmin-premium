@@ -41,25 +41,29 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center gap-2 bg-carmin text-white font-sans font-medium text-sm tracking-widest uppercase px-8 py-4 transition-all duration-300 hover:bg-carmin-dark;
+    @apply inline-flex items-center justify-center gap-2 bg-carmin text-white font-sans font-medium text-sm tracking-widest uppercase px-8 py-4 transition-colors duration-300 hover:bg-carmin-light;
+  }
+
+  .btn-lg {
+    @apply text-base py-5;
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 border border-white/40 text-white font-sans font-medium text-sm tracking-widest uppercase px-8 py-4 transition-all duration-300 hover:border-white hover:bg-white/10;
-  }
-
-  .btn-dark {
-    @apply inline-flex items-center gap-2 border border-carmin text-carmin font-sans font-medium text-sm tracking-widest uppercase px-8 py-4 transition-all duration-300 hover:bg-carmin hover:text-white;
+    @apply inline-flex items-center justify-center gap-2 border border-white/40 text-white font-sans font-medium text-sm tracking-widest uppercase px-6 py-4 transition-colors duration-300 hover:border-white hover:bg-white/10;
   }
 
   .section-label {
     @apply font-sans text-xs font-medium tracking-widest uppercase text-gold;
   }
-
-  .divider-line {
-    @apply w-12 h-px bg-gold;
-  }
 }
+
+@layer utilities {
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+}
+
+/* Compensa la barra fija al navegar con el menú */
+section[id] { scroll-margin-top: 4rem; }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
