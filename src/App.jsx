@@ -1,11 +1,10 @@
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Infrastructure from './components/Infrastructure'
-import Quality from './components/Quality'
-import Products from './components/Products'
-import Services from './components/Services'
-import WhatsAppCTA from './components/WhatsAppCTA'
+import Inicio from './components/Inicio'
+import Nosotros from './components/Nosotros'
+import Envios from './components/Envios'
+import Productos from './components/Productos'
+import Resenas from './components/Resenas'
+import Contacto from './components/Contacto'
 import Footer from './components/Footer'
 import WhatsAppFloat from './components/WhatsAppFloat'
 
@@ -14,13 +13,12 @@ export default function App() {
     <div className="bg-white text-carbon font-sans antialiased overflow-x-hidden">
       <Navbar />
       <main>
-        <Hero />
-        <About />
-        <Infrastructure />
-        <Quality />
-        <Products />
-        <Services />
-        <WhatsAppCTA />
+        <Inicio />
+        <Nosotros />
+        <Envios />
+        <Productos />
+        <Resenas />
+        <Contacto />
       </main>
       <Footer />
       <WhatsAppFloat />
