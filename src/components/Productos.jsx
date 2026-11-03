@@ -22,9 +22,12 @@ export default function Productos() {
           <h2 className={`text-3xl lg:text-4xl mt-3 ${boutique ? 'text-white' : 'text-carbon'}`}>Nuestros cortes</h2>
         </div>
 
-        {/* Pestañas: 4 categorías en una fila + Línea Boutique destacada debajo */}
+        {/* Pestañas: categorías en una fila + Línea Boutique destacada debajo */}
         <div role="tablist" aria-label="Categorías" className="max-w-2xl mx-auto mb-6">
-          <div className="grid grid-cols-4 gap-1.5 sm:gap-2 mb-2">
+          <div
+            className="grid gap-1.5 sm:gap-2 mb-2"
+            style={{ gridTemplateColumns: `repeat(${normales.length}, minmax(0, 1fr))` }}
+          >
             {normales.map(c => {
               const sel = c.id === activa
               return (

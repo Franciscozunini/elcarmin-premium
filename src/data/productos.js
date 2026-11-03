@@ -6,6 +6,10 @@
 //    todavía no hay foto (se muestra un recuadro "Foto próximamente").
 //  - Las fotos marcadas "a confirmar" fueron asignadas mirando la imagen:
 //    revisá que el nombre del corte sea el correcto.
+//  - oculto: true → el producto NO se muestra en la web. Los productos sin foto
+//    están ocultos; cuando tengas la foto, cargala, poné el nombre del archivo en
+//    "foto" y borrá "oculto: true" (o cambialo a false).
+//  - Si todos los productos de una categoría están ocultos, la pestaña tampoco se muestra.
 // ─────────────────────────────────────────────────────────────────────────────
 
 const archivos = import.meta.glob('../assets/productos/*.webp', { eager: true, import: 'default' })
@@ -18,7 +22,7 @@ function foto(id) {
   return { sm, lg }
 }
 
-export const CATEGORIAS = [
+const TODAS = [
   {
     id: 'vacuno',
     nombre: 'Vacuno',
@@ -34,7 +38,7 @@ export const CATEGORIAS = [
       { nombre: 'Bola de lomo', foto: foto('GAR09780') }, // a confirmar
       { nombre: 'Paleta', foto: foto('GAR09740') }, // a confirmar
       { nombre: 'Roast beef', foto: foto('GAR09738') }, // a confirmar
-      { nombre: 'Peceto', foto: null }, // falta foto
+      { nombre: 'Peceto', foto: null, oculto: true }, // falta foto
     ],
   },
   {
@@ -43,14 +47,14 @@ export const CATEGORIAS = [
     productos: [
       { nombre: 'Matambre de cerdo', foto: foto('GAR09755') }, // a confirmar
       { nombre: 'Pulpa de cerdo', foto: foto('GAR09764') }, // a confirmar
-      { nombre: 'Bondiola', foto: null }, // falta foto
+      { nombre: 'Bondiola', foto: null, oculto: true }, // falta foto
     ],
   },
   {
     id: 'pollo',
     nombre: 'Pollo',
     productos: [
-      { nombre: 'Pollo entero', foto: null }, // falta foto
+      { nombre: 'Pollo entero', foto: null, oculto: true }, // falta foto
     ],
   },
   {
@@ -59,7 +63,7 @@ export const CATEGORIAS = [
     nombreCorto: 'Embutidos',
     productos: [
       { nombre: 'Salchicha parrillera', foto: foto('GAR09719') }, // a confirmar
-      { nombre: 'Chorizo artesanal', foto: null }, // falta foto
+      { nombre: 'Chorizo artesanal', foto: null, oculto: true }, // falta foto
     ],
   },
   {
@@ -72,7 +76,12 @@ export const CATEGORIAS = [
       { nombre: 'Bife de chorizo', foto: foto('GAR09736') },
       { nombre: 'Entraña', foto: foto('GAR09772') },
       { nombre: 'Colita de cuadril', foto: foto('GAR09733') },
-      { nombre: 'Envasados al vacío', foto: null }, // falta foto
+      { nombre: 'Envasados al vacío', foto: null, oculto: true }, // falta foto
     ],
   },
 ]
+
+// Lo que se muestra en la web: sin productos ocultos ni categorías vacías.
+export const CATEGORIAS = TODAS
+  .map(c => ({ ...c, productos: c.productos.filter(p => !p.oculto) }))
+  .filter(c => c.productos.length > 0)
